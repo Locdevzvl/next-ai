@@ -24,12 +24,13 @@ function ThemeToggle() {
   useEffect(() => {
     const saved = localStorage.getItem('theme-preference')
     const dark = saved !== 'light'
-    setIsDark(dark)
-    if (!dark) {
-      document.documentElement.setAttribute('data-theme', 'light')
-    } else {
-      document.documentElement.removeAttribute('data-theme')
-    }
+    setTimeout(() => {
+      if (!dark) {
+        document.documentElement.setAttribute('data-theme', 'light')
+      } else {
+        document.documentElement.removeAttribute('data-theme')
+      }
+    }, 0)
   }, [])
 
   const toggle = () => {
@@ -128,7 +129,18 @@ export function GlobalTopNavbar() {
     >
       <Toolbar sx={{ minHeight: 52, px: 3, gap: 2 }}>
         {/* Brand */}
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
+        <Box
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: 1.5,
+            cursor: 'pointer',
+            '&:hover .brand-mark': {
+              transform: 'translateY(-1px) scale(1.03)',
+              boxShadow: '0 0 0 1px rgba(255,255,255,0.06), var(--glass-glow)',
+            },
+          }}
+        >
           <Box
             sx={{
               width: 30,
@@ -144,7 +156,13 @@ export function GlobalTopNavbar() {
               color: 'var(--bg-base)',
               letterSpacing: -0.5,
               flexShrink: 0,
+              transition:
+                'transform 0.22s cubic-bezier(0.22, 0.61, 0.36, 1), box-shadow 0.2s ease',
+              '&.brand-mark': {
+                // class hook for parent hover
+              },
             }}
+            className="brand-mark"
           >
             F
           </Box>

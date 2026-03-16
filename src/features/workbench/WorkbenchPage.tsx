@@ -92,15 +92,17 @@ export function WorkbenchPage() {
           <>
             {/* Documents panel */}
             <Box
-            className="glass-card"
-            sx={{
-              width: 450,
-              flexShrink: 0,
-              height: '100%',
-              borderRadius: '16px',
-              bgcolor: 'var(--bg-surface)',
-              overflow: 'hidden',
-            }}
+              key="docs-sidebar"
+              className="glass-card"
+              sx={{
+                width: 450,
+                flexShrink: 0,
+                height: '100%',
+                borderRadius: '16px',
+                bgcolor: 'var(--bg-surface)',
+                overflow: 'hidden',
+                animation: 'page-slide-fade 260ms cubic-bezier(0.22, 0.61, 0.36, 1)',
+              }}
             >
               <DocumentsPanel
                 selectedId={selectedDocumentId}
@@ -110,21 +112,24 @@ export function WorkbenchPage() {
 
             {/* Main viewer panel */}
             <Box
-            className="glass-card"
-            sx={{
-              flex: 1,
-              minWidth: 0,
-              height: '100%',
-              borderRadius: '16px',
-              bgcolor: 'var(--bg-surface)',
-              overflow: 'hidden',
-            }}
-          >
-            <ViewerPanel selectedDocument={selectedDocument} />
+              key="docs-viewer"
+              className="glass-card"
+              sx={{
+                flex: 1,
+                minWidth: 0,
+                height: '100%',
+                borderRadius: '16px',
+                bgcolor: 'var(--bg-surface)',
+                overflow: 'hidden',
+                animation: 'page-slide-fade 260ms cubic-bezier(0.22, 0.61, 0.36, 1)',
+              }}
+            >
+              <ViewerPanel selectedDocument={selectedDocument} />
             </Box>
           </>
         ) : (
           <Box
+            key={activeNav}
             className="glass-card"
             sx={{
               flex: 1,
@@ -132,7 +137,9 @@ export function WorkbenchPage() {
               height: '100%',
               borderRadius: '16px',
               bgcolor: 'var(--bg-surface)',
-              overflow: 'hidden',
+              overflowY: 'auto',
+              overflowX: 'hidden',
+              animation: 'page-slide-fade 260ms cubic-bezier(0.22, 0.61, 0.36, 1)',
             }}
           >
             {activeNav === 'overview' && <OverviewPanel />}

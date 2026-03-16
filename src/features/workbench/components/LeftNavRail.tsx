@@ -80,12 +80,15 @@ export function LeftNavRail({ activeItem, onChange }: LeftNavRailProps) {
                 boxShadow: isActive
                   ? 'inset 1px 1px 0 rgba(255,255,255,0.06), var(--glass-glow)'
                   : 'none',
-                transition: 'all 0.18s ease',
+                transform: isActive ? 'translateY(-1px)' : 'translateY(0)',
+                transition:
+                  'background-color 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease, transform 0.18s ease',
                 '&:hover': {
                   bgcolor: 'var(--glass-hover-bg)',
                   border: isActive
                     ? '1px solid var(--accent-hover)'
                     : '1px solid var(--glass-border)',
+                  transform: 'translateY(-2px)',
                 },
               }}
             >

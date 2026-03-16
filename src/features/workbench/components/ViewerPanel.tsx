@@ -48,7 +48,7 @@ export function ViewerPanel({ selectedDocument }: ViewerPanelProps) {
           flexShrink: 0,
         }}
       >
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
           {!isEmpty && (
             <Box
               sx={{
@@ -63,6 +63,14 @@ export function ViewerPanel({ selectedDocument }: ViewerPanelProps) {
                 boxShadow: 'var(--glass-glow)',
                 color: 'var(--accent)',
                 flexShrink: 0,
+                transform: 'translateY(0)',
+                transition:
+                  'transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease',
+                '&:hover': {
+                  transform: 'translateY(-1px)',
+                  borderColor: 'var(--accent)',
+                  boxShadow: '0 0 0 1px rgba(255,255,255,0.06), var(--glass-glow)',
+                },
               }}
             >
               <DescriptionOutlinedIcon sx={{ fontSize: 18 }} />

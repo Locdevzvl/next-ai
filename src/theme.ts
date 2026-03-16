@@ -94,7 +94,7 @@ export const theme = createTheme({
           '--bg-surface': '#FFFFFF',
           '--bg-elevated': '#EBEBEB',
           '--text-primary': '#1A1A1A',
-          '--text-secondary': '#555555',
+          '--text-secondary': '#333333',
           '--border': '#CCCCCC',
           '--accent': '#555555',
           '--accent-hover': '#222222',
@@ -222,6 +222,17 @@ export const theme = createTheme({
         '@keyframes glow-pulse': {
           '0%, 100%': { boxShadow: '0 0 12px rgba(136, 136, 136, 0.2)' },
           '50%': { boxShadow: '0 0 22px rgba(136, 136, 136, 0.35)' },
+        },
+
+        '@keyframes page-slide-fade': {
+          '0%': {
+            opacity: 0,
+            transform: 'translateY(8px) scale(0.995)',
+          },
+          '100%': {
+            opacity: 1,
+            transform: 'translateY(0) scale(1)',
+          },
         },
 
         '.reveal': {
