@@ -341,18 +341,70 @@ export function ProgramsPanel() {
           value={activeTab}
           onChange={(_, value) => setActiveTab(value)}
           variant="scrollable"
-          scrollButtons="auto"
+          scrollButtons
+          allowScrollButtonsMobile
+          TabIndicatorProps={{ style: { display: 'none' } }}
           sx={{
             minHeight: 0,
+            borderRadius: 999,
+            px: 0.5,
+            py: 0.5,
+            backgroundColor: 'var(--glass-bg)',
+            border: '1px solid var(--glass-border)',
+            boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.04)',
+            backdropFilter: 'var(--glass-blur)',
+            WebkitBackdropFilter: 'var(--glass-blur)',
+            '& .MuiTabs-flexContainer': {
+              gap: 0.25,
+            },
+            '& .MuiTabs-scrollButtons': {
+              width: 30,
+              height: 30,
+              borderRadius: 999,
+              color: 'var(--text-secondary)',
+              transition:
+                'opacity 0.18s ease, background-color 0.18s ease, color 0.18s ease',
+              opacity: 0,
+              pointerEvents: 'none',
+              '&:hover': {
+                bgcolor: 'var(--glass-hover-bg)',
+                color: 'var(--text-primary)',
+              },
+              '&.Mui-disabled': {
+                opacity: 0,
+              },
+            },
+            '&:hover .MuiTabs-scrollButtons': {
+              opacity: 1,
+              pointerEvents: 'auto',
+            },
             '& .MuiTab-root': {
               minHeight: 0,
-              paddingX: 1.4,
-              paddingY: 0.6,
-              borderRadius: '999px',
+              px: 2,
+              py: 0.6,
+              borderRadius: 999,
               textTransform: 'none',
-              fontSize: 12,
+              fontSize: 12.5,
+              fontWeight: 600,
+              color: 'var(--text-secondary)',
               alignItems: 'center',
               gap: 0.75,
+              transition:
+                'background-color 0.18s ease, color 0.18s ease, box-shadow 0.18s ease, transform 0.18s ease',
+              '&:hover': {
+                bgcolor: 'var(--glass-hover-bg)',
+                color: 'var(--text-primary)',
+                transform: 'translateY(-1px)',
+              },
+            },
+            '& .MuiTab-root.Mui-selected': {
+              bgcolor: 'var(--glass-hover-bg)',
+              color: 'var(--text-primary)',
+              boxShadow: 'inset 0 0 0 1px var(--accent)',
+            },
+            '& .MuiTab-root.Mui-selected:hover': {
+              bgcolor: 'var(--glass-hover-bg)',
+              boxShadow: 'inset 0 0 0 1px var(--accent-hover)',
             },
           }}
         >

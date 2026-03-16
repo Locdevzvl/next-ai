@@ -3,11 +3,29 @@ import Chip from '@mui/material/Chip'
 import Divider from '@mui/material/Divider'
 import Stack from '@mui/material/Stack'
 import Typography from '@mui/material/Typography'
+import CodeOutlinedIcon from '@mui/icons-material/CodeOutlined'
+import DescriptionOutlinedIcon from '@mui/icons-material/DescriptionOutlined'
+import FolderOutlinedIcon from '@mui/icons-material/FolderOutlined'
 
 const METRIC_CARDS = [
-  { id: 'cobol-programs', label: 'COBOL programs', value: 35 },
-  { id: 'jcl-files', label: 'JCL files', value: 63 },
-  { id: 'other-files', label: 'Other files', value: 10 },
+  {
+    id: 'cobol-programs',
+    label: 'COBOL programs',
+    value: 35,
+    icon: <CodeOutlinedIcon sx={{ fontSize: 18 }} />,
+  },
+  {
+    id: 'jcl-files',
+    label: 'JCL files',
+    value: 63,
+    icon: <DescriptionOutlinedIcon sx={{ fontSize: 18 }} />,
+  },
+  {
+    id: 'other-files',
+    label: 'Other files',
+    value: 10,
+    icon: <FolderOutlinedIcon sx={{ fontSize: 18 }} />,
+  },
 ]
 
 const DETECTED_ARTEFACTS = [
@@ -116,13 +134,53 @@ export function OverviewPanel() {
               display: 'flex',
               flexDirection: 'column',
               gap: 0.75,
+              position: 'relative',
+              overflow: 'hidden',
+              cursor: 'pointer',
+              transform: 'translateY(0)',
+              transition:
+                'transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease, background-color 0.18s ease',
+              '&:hover': {
+                transform: 'translateY(-2px)',
+                bgcolor: 'var(--glass-hover-bg)',
+                borderColor: 'var(--accent)',
+                boxShadow:
+                  'inset 1px 1px 0 rgba(255,255,255,0.06), var(--glass-shadow), var(--glass-glow)',
+              },
+              '&:hover .metric-icon': {
+                transform: 'translateY(-1px) scale(1.03)',
+                color: 'var(--accent)',
+              },
             }}
           >
+            {/* Icon badge */}
+            <Box
+              className="metric-icon"
+              sx={{
+                position: 'absolute',
+                top: 10,
+                right: 10,
+                width: 30,
+                height: 30,
+                borderRadius: 999,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                bgcolor: 'rgba(255,255,255,0.04)',
+                border: '1px solid var(--glass-border)',
+                color: 'var(--text-secondary)',
+                boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.05)',
+                transition: 'transform 0.18s ease, color 0.18s ease',
+              }}
+            >
+              {metric.icon}
+            </Box>
+
             <Typography
               sx={{
                 fontSize: 11,
                 textTransform: 'uppercase',
-                  letterSpacing: 0.8,
+                letterSpacing: 0.8,
                 color: 'text.secondary',
                 fontWeight: 600,
               }}
@@ -131,7 +189,7 @@ export function OverviewPanel() {
             </Typography>
             <Typography
               sx={{
-                  fontSize: 22,
+                fontSize: 22,
                 fontWeight: 700,
                 fontFeatureSettings: '"tnum" 1, "lnum" 1',
               }}

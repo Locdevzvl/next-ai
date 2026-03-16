@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { startTransition, useEffect, useMemo, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { Box } from '@mui/material'
 import { GlobalTopNavbar } from './components/GlobalTopNavbar'
@@ -38,6 +38,18 @@ export function WorkbenchPage() {
       PROGRAM_DOCUMENTS.find((doc) => doc.id === selectedDocumentId) ?? null
     )
   }, [selectedDocumentId])
+
+  const panelDeck = useMemo(
+    () =>
+      [
+        { key: 'overview', node: <OverviewPanel /> },
+        { key: 'programs', node: <ProgramsPanel /> },
+        { key: 'source', node: <SourcePanel /> },
+        { key: 'generate', node: <GeneratePanel /> },
+        { key: 'templates', node: <TemplatesPanel /> },
+      ] as const,
+    [],
+  )
 
   useEffect(() => {
     document.body.classList.add('workbench-no-scroll')
@@ -86,7 +98,10 @@ export function WorkbenchPage() {
         }}
       >
         {/* Left nav rail */}
-        <LeftNavRail activeItem={activeNav} onChange={setActiveNav} />
+        <LeftNavRail
+          activeItem={activeNav}
+          onChange={(next) => startTransition(() => setActiveNav(next))}
+        />
 
         {activeNav === 'docs' ? (
           <>
@@ -101,13 +116,14 @@ export function WorkbenchPage() {
                 borderRadius: '16px',
                 bgcolor: 'var(--bg-surface)',
                 overflow: 'hidden',
-                animation: 'page-slide-fade 260ms cubic-bezier(0.22, 0.61, 0.36, 1)',
               }}
             >
-              <DocumentsPanel
-                selectedId={selectedDocumentId}
-                onSelect={setSelectedDocumentId}
-              />
+              <Box className="page-transition" sx={{ height: '100%' }}>
+                <DocumentsPanel
+                  selectedId={selectedDocumentId}
+                  onSelect={setSelectedDocumentId}
+                />
+              </Box>
             </Box>
 
             {/* Main viewer panel */}
@@ -121,15 +137,15 @@ export function WorkbenchPage() {
                 borderRadius: '16px',
                 bgcolor: 'var(--bg-surface)',
                 overflow: 'hidden',
-                animation: 'page-slide-fade 260ms cubic-bezier(0.22, 0.61, 0.36, 1)',
               }}
             >
-              <ViewerPanel selectedDocument={selectedDocument} />
+              <Box className="page-transition" sx={{ height: '100%' }}>
+                <ViewerPanel selectedDocument={selectedDocument} />
+              </Box>
             </Box>
           </>
         ) : (
           <Box
-            key={activeNav}
             className="glass-card"
             sx={{
               flex: 1,
@@ -137,16 +153,38 @@ export function WorkbenchPage() {
               height: '100%',
               borderRadius: '16px',
               bgcolor: 'var(--bg-surface)',
-              overflowY: 'auto',
-              overflowX: 'hidden',
-              animation: 'page-slide-fade 260ms cubic-bezier(0.22, 0.61, 0.36, 1)',
+              overflow: 'hidden',
+              position: 'relative',
             }}
           >
-            {activeNav === 'overview' && <OverviewPanel />}
-            {activeNav === 'programs' && <ProgramsPanel />}
-            {activeNav === 'source' && <SourcePanel />}
-            {activeNav === 'generate' && <GeneratePanel />}
-            {activeNav === 'templates' && <TemplatesPanel />}
+            {panelDeck.map((panel) => {
+              const isActive = activeNav === panel.key
+              return (
+                <Box
+                  key={panel.key}
+                  sx={{
+                    position: 'absolute',
+                    inset: 0,
+                    overflowY: 'auto',
+                    overflowX: 'hidden',
+                    opacity: isActive ? 1 : 0,
+                    transform: isActive
+                      ? 'translateY(0) scale(1)'
+                      : 'translateY(8px) scale(0.995)',
+                    transition:
+                      'opacity 180ms ease, transform 220ms cubic-bezier(0.22, 0.61, 0.36, 1)',
+                    willChange: 'opacity, transform',
+                    pointerEvents: isActive ? 'auto' : 'none',
+                    visibility: isActive ? 'visible' : 'hidden',
+                    contain: 'layout paint',
+                  }}
+                >
+                  <Box className="page-transition" sx={{ height: '100%' }}>
+                    {panel.node}
+                  </Box>
+                </Box>
+              )
+            })}
           </Box>
         )}
 
