@@ -12,6 +12,7 @@ import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import LightModeOutlinedIcon from '@mui/icons-material/LightModeOutlined'
 import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined'
+import logo from '../../../assets/logo.png'
 
 function ThemeToggle() {
   const [isDark, setIsDark] = useState(() => {
@@ -138,6 +139,7 @@ export function GlobalTopNavbar() {
       <Toolbar sx={{ minHeight: 52, px: 3, gap: 2 }}>
         {/* Brand */}
         <Box
+          onClick={() => navigate('/sessions')}
           sx={{
             display: 'flex',
             alignItems: 'center',
@@ -150,41 +152,55 @@ export function GlobalTopNavbar() {
           }}
         >
           <Box
+            className="brand-mark"
             sx={{
-              width: 30,
-              height: 30,
-              borderRadius: '10px',
+              height: 44,
+              px: 1.75,
+              borderRadius: '12px',
               display: 'flex',
               alignItems: 'center',
-              justifyContent: 'center',
-              backgroundColor: 'var(--accent)',
-              boxShadow: 'var(--glass-glow)',
-              fontSize: 14,
-              fontWeight: 800,
-              color: 'var(--bg-base)',
-              letterSpacing: -0.5,
-              flexShrink: 0,
+              backgroundColor: '#f1e3cf',
+              border: '1px solid transparent',
+              backgroundImage:
+                'linear-gradient(#f1e3cf, #f1e3cf), var(--accent-gradient)',
+              backgroundOrigin: 'border-box',
+              backgroundClip: 'padding-box, border-box',
+              boxShadow: 'var(--glass-shadow), var(--glass-glow)',
+              backdropFilter: 'var(--glass-blur)',
+              WebkitBackdropFilter: 'var(--glass-blur)',
               transition:
                 'transform 0.22s cubic-bezier(0.22, 0.61, 0.36, 1), box-shadow 0.2s ease',
-              '&.brand-mark': {
-                // class hook for parent hover
+              position: 'relative',
+              overflow: 'hidden',
+              '&::before': {
+                content: '""',
+                position: 'absolute',
+                inset: -2,
+                backgroundImage:
+                  'radial-gradient(320px 80px at 18% 50%, rgba(168,85,247,0.18) 0%, transparent 70%), radial-gradient(320px 80px at 82% 50%, rgba(37,99,235,0.16) 0%, transparent 70%)',
+                opacity: 0.9,
+                pointerEvents: 'none',
               },
             }}
-            className="brand-mark"
           >
-            F
+            <Box
+              component="img"
+              src={logo}
+              alt="Logo"
+              draggable={false}
+              sx={{
+                height: 34,
+                width: 'auto',
+                maxWidth: 300,
+                objectFit: 'contain',
+                display: 'block',
+                position: 'relative',
+                zIndex: 1,
+                filter:
+                  'drop-shadow(0 14px 26px rgba(0,0,0,0.24)) contrast(1.14) saturate(1.18)',
+              }}
+            />
           </Box>
-          <Typography
-            variant="h6"
-            sx={{
-              fontSize: 15,
-              letterSpacing: 3,
-              fontWeight: 700,
-              color: 'var(--text-primary)',
-            }}
-          >
-            HLQ
-          </Typography>
         </Box>
 
         {/* Nav pill */}
