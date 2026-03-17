@@ -152,12 +152,12 @@ export function DocumentsPanel({ selectedId, onSelect }: DocumentsPanelProps) {
             transition: 'all 0.18s ease',
             '&:focus-within': {
               borderColor: 'var(--accent)',
-              boxShadow: '0 0 0 3px rgba(136, 136, 136, 0.12)',
+              boxShadow: 'var(--focus-ring)',
               bgcolor: 'var(--glass-hover-bg)',
             },
           }}
         >
-          <SearchIcon sx={{ fontSize: 15, color: 'text.secondary', flexShrink: 0 }} />
+          <SearchIcon sx={{ fontSize: 15, color: 'var(--text-secondary)', flexShrink: 0 }} />
           <InputBase
             fullWidth
             value={query}
@@ -165,9 +165,9 @@ export function DocumentsPanel({ selectedId, onSelect }: DocumentsPanelProps) {
             placeholder="Filter documents..."
             sx={{
               fontSize: 12.5,
-              color: 'text.primary',
+              color: 'var(--text-primary)',
               '& input::placeholder': {
-                color: 'text.secondary',
+                color: 'var(--text-secondary)',
                 opacity: 1,
               },
             }}
@@ -189,7 +189,7 @@ export function DocumentsPanel({ selectedId, onSelect }: DocumentsPanelProps) {
           sx={{
             fontSize: 10,
             fontWeight: 600,
-            color: 'text.secondary',
+            color: 'var(--text-secondary)',
             textTransform: 'uppercase',
             letterSpacing: 1,
           }}
@@ -205,7 +205,7 @@ export function DocumentsPanel({ selectedId, onSelect }: DocumentsPanelProps) {
             border: '1px solid var(--glass-border)',
           }}
         >
-          <Typography sx={{ fontSize: 10, color: 'text.secondary', fontWeight: 600 }}>
+          <Typography sx={{ fontSize: 10, color: 'var(--text-secondary)', fontWeight: 600 }}>
             {filteredPrograms.length}
           </Typography>
         </Box>
@@ -306,7 +306,7 @@ export function DocumentsPanel({ selectedId, onSelect }: DocumentsPanelProps) {
                         sx={{
                           fontSize: 10,
                           fontWeight: 600,
-                          color: 'text.secondary',
+                          color: 'var(--text-secondary)',
                           lineHeight: 1.4,
                         }}
                       >
@@ -335,7 +335,7 @@ export function DocumentsPanel({ selectedId, onSelect }: DocumentsPanelProps) {
                         background: 'var(--glass-hover-bg)',
                         borderColor: 'var(--accent)',
                         boxShadow:
-                          'inset 1px 1px 0 rgba(255,255,255,0.06), var(--glass-shadow)',
+                          'var(--glass-inset-highlight-subtle), var(--glass-shadow)',
                         '&:hover': {
                           background: 'var(--glass-hover-bg)',
                           borderColor: 'var(--accent-hover)',
@@ -453,7 +453,7 @@ function DocumentsPanelHeader({ total }: DocumentsPanelHeaderProps) {
             Documents
           </Typography>
           <Typography
-            sx={{ color: 'text.secondary', fontSize: 11, lineHeight: 1 }}
+            sx={{ color: 'var(--text-secondary)', fontSize: 11, lineHeight: 1 }}
           >
             {PROGRAM_GROUP_LABEL} · {total} items
           </Typography>

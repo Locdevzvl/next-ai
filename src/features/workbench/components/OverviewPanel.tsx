@@ -95,7 +95,7 @@ export function OverviewPanel() {
               fontSize: 11,
               textTransform: 'uppercase',
               letterSpacing: 1.2,
-              color: 'text.secondary',
+              color: 'var(--text-secondary)',
               fontWeight: 600,
             }}
           >
@@ -104,7 +104,7 @@ export function OverviewPanel() {
           <Typography sx={{ fontSize: 18, fontWeight: 600, mt: 0.75 }}>
             Analytics and high-level statistics
           </Typography>
-          <Typography sx={{ fontSize: 12.5, color: 'text.secondary', mt: 0.5 }}>
+          <Typography sx={{ fontSize: 12.5, color: 'var(--text-secondary)', mt: 0.5 }}>
             Snapshot of COBOL assets discovered for this session&apos;s codebase.
           </Typography>
         </Box>
@@ -145,7 +145,7 @@ export function OverviewPanel() {
                 bgcolor: 'var(--glass-hover-bg)',
                 borderColor: 'var(--accent)',
                 boxShadow:
-                  'inset 1px 1px 0 rgba(255,255,255,0.06), var(--glass-shadow), var(--glass-glow)',
+                  'var(--glass-inset-highlight-subtle), var(--glass-shadow), var(--glass-glow)',
               },
               '&:hover .metric-icon': {
                 transform: 'translateY(-1px) scale(1.03)',
@@ -166,10 +166,10 @@ export function OverviewPanel() {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                bgcolor: 'rgba(255,255,255,0.04)',
+                bgcolor: 'var(--glass-bg)',
                 border: '1px solid var(--glass-border)',
                 color: 'var(--text-secondary)',
-                boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.05)',
+                boxShadow: 'var(--glass-inset-highlight-subtle)',
                 transition: 'transform 0.18s ease, color 0.18s ease',
               }}
             >
@@ -181,7 +181,7 @@ export function OverviewPanel() {
                 fontSize: 11,
                 textTransform: 'uppercase',
                 letterSpacing: 0.8,
-                color: 'text.secondary',
+                color: 'var(--text-secondary)',
                 fontWeight: 600,
               }}
             >
@@ -226,7 +226,7 @@ export function OverviewPanel() {
               fontSize: 11,
               textTransform: 'uppercase',
               letterSpacing: 1,
-              color: 'text.secondary',
+              color: 'var(--text-secondary)',
               fontWeight: 600,
             }}
           >
@@ -265,7 +265,7 @@ export function OverviewPanel() {
                 borderRadius: 999,
                 borderColor: 'var(--glass-border)',
                 bgcolor: 'var(--bg-surface)',
-                color: 'text.primary',
+                color: 'var(--text-primary)',
                 fontSize: 11,
               }}
             />
@@ -299,7 +299,7 @@ export function OverviewPanel() {
               fontSize: 11,
               textTransform: 'uppercase',
               letterSpacing: 1,
-              color: 'text.secondary',
+              color: 'var(--text-secondary)',
               fontWeight: 600,
             }}
           >
@@ -314,7 +314,7 @@ export function OverviewPanel() {
               bgcolor: 'var(--bg-surface)',
             }}
           >
-            <Typography sx={{ fontSize: 11, fontWeight: 600, color: 'text.secondary' }}>
+            <Typography sx={{ fontSize: 11, fontWeight: 600, color: 'var(--text-secondary)' }}>
               Dialect: 1
             </Typography>
           </Box>
@@ -363,7 +363,7 @@ export function OverviewPanel() {
               fontSize: 11,
               textTransform: 'uppercase',
               letterSpacing: 1,
-              color: 'text.secondary',
+              color: 'var(--text-secondary)',
               fontWeight: 600,
             }}
           >
@@ -419,7 +419,7 @@ export function OverviewPanel() {
               fontSize: 11,
               textTransform: 'uppercase',
               letterSpacing: 1,
-              color: 'text.secondary',
+              color: 'var(--text-secondary)',
               fontWeight: 600,
             }}
           >
@@ -496,11 +496,11 @@ function SymbolicReferenceItem({ title, value }: SymbolicReferenceItemProps) {
         gap: 1.5,
       }}
     >
-      <Typography sx={{ fontSize: 12, color: 'text.secondary' }}>{title}</Typography>
+      <Typography sx={{ fontSize: 12, color: 'var(--text-secondary)' }}>{title}</Typography>
       <Typography
         sx={{
           fontSize: 12,
-          color: 'text.secondary',
+          color: 'var(--text-secondary)',
           fontStyle: 'italic',
         }}
       >
@@ -530,7 +530,7 @@ function ChainColumn({ title, items }: ChainColumnProps) {
           fontSize: 11,
           textTransform: 'uppercase',
           letterSpacing: 0.8,
-          color: 'text.secondary',
+          color: 'var(--text-secondary)',
           fontWeight: 600,
           mb: 1,
         }}
@@ -547,7 +547,7 @@ function ChainColumn({ title, items }: ChainColumnProps) {
         }}
       >
         {items.length === 0 ? (
-          <Typography sx={{ fontSize: 12, color: 'text.secondary' }}>
+          <Typography sx={{ fontSize: 12, color: 'var(--text-secondary)' }}>
             No items detected
           </Typography>
         ) : (

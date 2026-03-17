@@ -20,16 +20,16 @@ const COLOR_MAP: Record<MetricColor, { dot: string; glow: string }> = {
     glow: 'transparent',
   },
   info: {
-    dot: '#38bdf8',
-    glow: 'rgba(56,189,248,0.4)',
+    dot: 'var(--info)',
+    glow: 'var(--info-glow)',
   },
   warning: {
-    dot: '#fbbf24',
-    glow: 'rgba(251,191,36,0.4)',
+    dot: 'var(--warning)',
+    glow: 'var(--warning-border)',
   },
   success: {
-    dot: '#22c55e',
-    glow: 'rgba(34,197,94,0.4)',
+    dot: 'var(--success)',
+    glow: 'var(--success-border)',
   },
 }
 
@@ -79,7 +79,7 @@ export function FloatingStatusDock() {
           cursor: 'pointer',
           transition: 'transform 0.18s ease, box-shadow 0.18s ease',
           transform: open ? 'translateY(-4px) scale(1.02)' : 'none',
-          boxShadow: open ? '0 0 0 1px rgba(136,136,136,0.5)' : 'none',
+          boxShadow: open ? '0 0 0 1px var(--border-strong)' : 'none',
         }}
       >
         {/* Run button (does not toggle panel) */}
@@ -92,7 +92,7 @@ export function FloatingStatusDock() {
             }}
             sx={{
               backgroundColor: 'var(--accent)',
-              color: 'var(--bg-base)',
+              color: 'var(--on-accent)',
               borderRadius: 999,
               width: 26,
               height: 26,
@@ -133,7 +133,7 @@ export function FloatingStatusDock() {
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    bgcolor: 'rgba(0,0,0,0.4)',
+                    bgcolor: 'var(--scrim)',
                     color: colors.dot,
                     boxShadow: isActive ? `0 0 6px ${colors.glow}` : 'none',
                     animation:
@@ -205,10 +205,10 @@ export function FloatingStatusDock() {
               Generation Status
             </Typography>
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
-              <Typography sx={{ fontSize: 11, color: 'text.secondary' }}>
+              <Typography sx={{ fontSize: 11, color: 'var(--text-secondary)' }}>
                 39 tasks
               </Typography>
-              <IconButton size="small" sx={{ color: 'text.secondary' }}>
+              <IconButton size="small" sx={{ color: 'var(--text-secondary)' }}>
                 <OpenInFullOutlinedIcon sx={{ fontSize: 15 }} />
               </IconButton>
               <IconButton
@@ -217,7 +217,7 @@ export function FloatingStatusDock() {
                   e.stopPropagation()
                   setOpen(false)
                 }}
-                sx={{ color: 'text.secondary' }}
+                sx={{ color: 'var(--text-secondary)' }}
               >
                 <CloseRoundedIcon sx={{ fontSize: 16 }} />
               </IconButton>
@@ -243,7 +243,7 @@ export function FloatingStatusDock() {
                 sx={{
                   borderRadius: 1.5,
                   border: '1px solid var(--glass-border)',
-                  bgcolor: 'rgba(0,0,0,0.35)',
+                  bgcolor: 'var(--scrim)',
                   px: 1.25,
                   py: 0.85,
                   display: 'flex',
@@ -276,23 +276,24 @@ export function FloatingStatusDock() {
                         borderRadius: 999,
                         border: '1px solid var(--glass-border)',
                         fontSize: 10,
-                        color: 'text.secondary',
+                        color: 'var(--text-secondary)',
                       }}
                     >
                       #{task.batch}
                     </Box>
                     <CheckCircleOutlineOutlinedIcon
-                      sx={{ fontSize: 16, color: COLOR_MAP.success.dot }}
+                      sx={{ fontSize: 16, color: 'var(--success)' }}
                     />
                   </Box>
                 </Box>
-                <Typography sx={{ fontSize: 11, color: 'text.secondary' }}>
+                <Typography sx={{ fontSize: 11, color: 'var(--text-secondary)' }}>
                   {task.duration} · {task.time}
                 </Typography>
                 <Typography
+                  component="div"
                   sx={{
                     fontSize: 11,
-                    color: 'text.secondary',
+                    color: 'var(--text-secondary)',
                     display: 'flex',
                     alignItems: 'center',
                     gap: 0.75,

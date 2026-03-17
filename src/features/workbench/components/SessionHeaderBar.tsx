@@ -44,18 +44,42 @@ export function SessionHeaderBar({ session }: SessionHeaderBarProps) {
         WebkitBackdropFilter: 'var(--glass-blur)',
         position: 'relative',
         transition: 'background-color 0.3s ease, border-color 0.2s ease',
+        overflow: 'hidden',
+        '&::before': {
+          content: '""',
+          position: 'absolute',
+          inset: -2,
+          backgroundImage:
+            'linear-gradient(90deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 10%, var(--accent-gradient) 55%, rgba(0,0,0,0) 100%)',
+          opacity: 0.22,
+          filter: 'blur(22px) saturate(120%)',
+          transform: 'translateY(-8px)',
+          pointerEvents: 'none',
+          zIndex: 0,
+        },
+        '&::after': {
+          content: '""',
+          position: 'absolute',
+          inset: 0,
+          backgroundImage:
+            'radial-gradient(900px 140px at 18% 0%, rgba(168,85,247,0.22) 0%, transparent 70%), radial-gradient(900px 160px at 78% 0%, rgba(37,99,235,0.20) 0%, transparent 72%)',
+          opacity: 0.55,
+          pointerEvents: 'none',
+          zIndex: 0,
+        },
       }}
     >
-      <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+      <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, position: 'relative', zIndex: 1 }}>
         {/* Session avatar */}
         <Avatar
           sx={{
             width: 34,
             height: 34,
-            backgroundColor: 'var(--accent)',
+            backgroundImage: 'var(--accent-gradient)',
             fontSize: 14,
             fontWeight: 700,
-            color: 'var(--bg-base)',
+            color: 'var(--on-accent)',
+            boxShadow: 'var(--glass-glow)',
           }}
         >
           {title.charAt(0).toUpperCase()}
@@ -76,9 +100,14 @@ export function SessionHeaderBar({ session }: SessionHeaderBarProps) {
                 py: 0.25,
                 borderRadius: 999,
                 bgcolor: 'var(--glass-bg)',
-                border: '1px solid var(--glass-border)',
+                border: '1px solid transparent',
+                backgroundImage:
+                  'linear-gradient(var(--glass-bg), var(--glass-bg)), var(--accent-gradient)',
+                backgroundOrigin: 'border-box',
+                backgroundClip: 'padding-box, border-box',
                 display: 'inline-flex',
                 alignItems: 'center',
+                boxShadow: 'var(--glass-inset-highlight-subtle)',
               }}
             >
               <Typography
@@ -103,8 +132,8 @@ export function SessionHeaderBar({ session }: SessionHeaderBarProps) {
                 width: 6,
                 height: 6,
                 borderRadius: '50%',
-                bgcolor: '#22c55e',
-                boxShadow: '0 0 6px rgba(34, 197, 94, 0.5)',
+                bgcolor: 'var(--success)',
+                boxShadow: '0 0 6px var(--success-border)',
                 animation: 'pulse-dot 2s ease-in-out infinite',
                 flexShrink: 0,
               }}
@@ -131,7 +160,7 @@ export function SessionHeaderBar({ session }: SessionHeaderBarProps) {
       </Box>
 
       {/* Language selector */}
-      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
+      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, position: 'relative', zIndex: 1 }}>
         <Typography
           variant="body2"
           sx={{ color: 'var(--text-secondary)', fontSize: 12 }}
@@ -164,7 +193,7 @@ export function SessionHeaderBar({ session }: SessionHeaderBarProps) {
             },
             '&.Mui-focused': {
               borderColor: 'var(--accent)',
-              boxShadow: '0 0 0 3px rgba(136, 136, 136, 0.12)',
+              boxShadow: 'var(--focus-ring)',
             },
           }}
         >

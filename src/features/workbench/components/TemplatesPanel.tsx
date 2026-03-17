@@ -135,7 +135,7 @@ export function TemplatesPanel() {
           <Typography sx={{ fontSize: 15, fontWeight: 600 }}>
             Workspace Templates
           </Typography>
-          <Typography sx={{ fontSize: 12.5, color: 'text.secondary' }}>
+          <Typography sx={{ fontSize: 12.5, color: 'var(--text-secondary)' }}>
             Workspace templates are copied from organization templates. You can customize them for
             this workspace.
           </Typography>
@@ -168,7 +168,7 @@ export function TemplatesPanel() {
             minWidth: 260,
           }}
         >
-          <SearchIcon sx={{ fontSize: 16, color: 'text.secondary' }} />
+          <SearchIcon sx={{ fontSize: 16, color: 'var(--text-secondary)' }} />
           <InputBase
             fullWidth
             placeholder="Search by name or kind..."
@@ -176,9 +176,9 @@ export function TemplatesPanel() {
             onChange={(e) => setQuery(e.target.value)}
             sx={{
               fontSize: 12.5,
-              color: 'text.primary',
+              color: 'var(--text-primary)',
               '& input::placeholder': {
-                color: 'text.secondary',
+                color: 'var(--text-secondary)',
                 opacity: 1,
               },
             }}
@@ -210,7 +210,7 @@ export function TemplatesPanel() {
             gap: 1,
           }}
         >
-          <Typography sx={{ fontSize: 12, color: 'text.secondary' }}>
+          <Typography sx={{ fontSize: 12, color: 'var(--text-secondary)' }}>
             {filtered.length} templates in this workspace
           </Typography>
         </Box>
@@ -226,10 +226,10 @@ export function TemplatesPanel() {
                 fontSize: 11,
                 textTransform: 'uppercase',
                 letterSpacing: 0.7,
-                color: 'text.secondary',
+                color: 'var(--text-secondary)',
               },
               '& td': {
-                borderBottom: '1px solid rgba(255,255,255,0.03)',
+                borderBottom: '1px solid var(--glass-border)',
                 fontSize: 12.5,
               },
             }}
@@ -255,7 +255,7 @@ export function TemplatesPanel() {
                   hover
                   sx={{
                     '&:hover': {
-                      bgcolor: 'rgba(255,255,255,0.02)',
+                      bgcolor: 'var(--glass-hover-bg)',
                     },
                   }}
                 >
@@ -264,7 +264,7 @@ export function TemplatesPanel() {
                       sx={{
                         fontSize: 12,
                         fontFamily: 'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas',
-                        color: 'text.secondary',
+                        color: 'var(--text-secondary)',
                       }}
                     >
                       {tpl.documentKind}
@@ -324,13 +324,13 @@ export function TemplatesPanel() {
                         borderRadius: 999,
                         bgcolor:
                           tpl.status === 'Active'
-                            ? 'rgba(22,163,74,0.15)'
-                            : 'rgba(148,163,184,0.15)',
+                            ? 'var(--success-bg)'
+                            : 'var(--glass-bg)',
                         border:
                           tpl.status === 'Active'
-                            ? '1px solid rgba(22,163,74,0.8)'
+                            ? '1px solid var(--success-border)'
                             : '1px solid var(--glass-border)',
-                        color: tpl.status === 'Active' ? '#4ade80' : 'text.secondary',
+                        color: tpl.status === 'Active' ? 'var(--success)' : 'var(--text-secondary)',
                       }}
                     />
                   </TableCell>

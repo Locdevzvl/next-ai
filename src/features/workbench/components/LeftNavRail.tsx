@@ -78,7 +78,7 @@ export function LeftNavRail({ activeItem, onChange }: LeftNavRailProps) {
                   ? '1px solid var(--accent)'
                   : '1px solid transparent',
                 boxShadow: isActive
-                  ? 'inset 1px 1px 0 rgba(255,255,255,0.06), var(--glass-glow)'
+                  ? 'var(--glass-inset-highlight-subtle), var(--glass-glow)'
                   : 'none',
                 transform: isActive ? 'translateY(-1px)' : 'translateY(0)',
                 transition:

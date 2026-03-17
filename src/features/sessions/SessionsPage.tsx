@@ -146,7 +146,7 @@ export function SessionsPage() {
                 </Typography>
                 <Typography
                   variant="body2"
-                  sx={{ color: 'text.secondary', maxWidth: 520, mb: 3 }}
+                  sx={{ color: 'var(--text-secondary)', maxWidth: 520, mb: 3 }}
                 >
                   Search, resume, and compare AI-powered analysis runs across
                   COBOL and distributed systems without losing context.
@@ -174,7 +174,7 @@ export function SessionsPage() {
                   </Button>
                   <Typography
                     variant="caption"
-                    sx={{ color: 'text.secondary' }}
+                    sx={{ color: 'var(--text-secondary)' }}
                   >
                     No uploads yet – try the demo COBOL workspace.
                   </Typography>
@@ -207,7 +207,7 @@ export function SessionsPage() {
                       mb: 1.5,
                     }}
                   >
-                    <Typography variant="caption" sx={{ color: 'text.secondary' }}>
+                    <Typography variant="caption" sx={{ color: 'var(--text-secondary)' }}>
                       Active COBOL workspaces
                     </Typography>
                     <Chip
@@ -230,12 +230,12 @@ export function SessionsPage() {
                           justifyContent: 'space-between',
                           alignItems: 'center',
                           fontSize: 12,
-                          color: 'text.secondary',
+                          color: 'var(--text-secondary)',
                         }}
                       >
                         <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
                           <DescriptionOutlinedIcon
-                            sx={{ fontSize: 16, color: 'text.disabled' }}
+                            sx={{ fontSize: 16, color: 'var(--text-tertiary)' }}
                           />
                           <Typography variant="body2">{s.name}</Typography>
                         </Box>
@@ -394,7 +394,7 @@ export function SessionsPage() {
 
           {/* Lightweight CTA + footer */}
           <Box sx={{ mt: 6, mb: 2, textAlign: 'center' }}>
-            <Typography variant="body2" sx={{ color: 'text.secondary', mb: 1 }}>
+            <Typography variant="body2" sx={{ color: 'var(--text-secondary)', mb: 1 }}>
               Ready to modernize another codebase?
             </Typography>
             <Button
@@ -450,7 +450,7 @@ function FeaturePill({ icon, title, description }: FeaturePillProps) {
         <Typography variant="body2" sx={{ fontWeight: 500, mb: 0.25 }}>
           {title}
         </Typography>
-        <Typography variant="caption" sx={{ color: 'text.secondary' }}>
+        <Typography variant="caption" sx={{ color: 'var(--text-secondary)' }}>
           {description}
         </Typography>
       </Box>
@@ -489,7 +489,7 @@ function SessionGroup({
         <Typography variant="subtitle1" sx={{ fontWeight: 600 }}>
           {title}
         </Typography>
-        <Typography variant="caption" sx={{ color: 'text.secondary' }}>
+        <Typography variant="caption" sx={{ color: 'var(--text-secondary)' }}>
           {count} workspace{count > 1 ? 's' : ''}
         </Typography>
       </Box>
@@ -516,25 +516,25 @@ function SessionGroup({
           >
             <Typography
               variant="caption"
-              sx={{ color: 'text.secondary', textTransform: 'uppercase' }}
+              sx={{ color: 'var(--text-secondary)', textTransform: 'uppercase' }}
             >
               Session name / ID
             </Typography>
             <Typography
               variant="caption"
-              sx={{ color: 'text.secondary', textTransform: 'uppercase' }}
+              sx={{ color: 'var(--text-secondary)', textTransform: 'uppercase' }}
             >
               Created
             </Typography>
             <Typography
               variant="caption"
-              sx={{ color: 'text.secondary', textTransform: 'uppercase' }}
+              sx={{ color: 'var(--text-secondary)', textTransform: 'uppercase' }}
             >
               Status
             </Typography>
             <Typography
               variant="caption"
-              sx={{ color: 'text.secondary', textAlign: 'right' }}
+              sx={{ color: 'var(--text-secondary)', textAlign: 'right' }}
             >
               Actions
             </Typography>
@@ -602,7 +602,7 @@ function SessionGroup({
                   <Typography
                     variant="caption"
                     noWrap
-                    sx={{ color: 'text.secondary', fontSize: 11 }}
+                    sx={{ color: 'var(--text-secondary)', fontSize: 11 }}
                   >
                     {session.description}
                   </Typography>
@@ -612,7 +612,7 @@ function SessionGroup({
               {/* created */}
               <Typography
                 variant="caption"
-                sx={{ color: 'text.secondary', fontSize: 11 }}
+                sx={{ color: 'var(--text-secondary)', fontSize: 11 }}
               >
                 {session.createdAt}
               </Typography>
@@ -633,7 +633,7 @@ function SessionGroup({
                 }}
               >
                 <ArrowForwardIosIcon
-                  sx={{ fontSize: 14, color: 'text.disabled' }}
+                  sx={{ fontSize: 14, color: 'var(--text-tertiary)' }}
                 />
               </Box>
             </Box>
@@ -714,7 +714,7 @@ function SessionGroup({
                 <Typography
                   variant="caption"
                   sx={{
-                    color: 'text.secondary',
+                    color: 'var(--text-secondary)',
                     fontSize: 11,
                     display: '-webkit-box',
                     WebkitLineClamp: 2,
@@ -736,7 +736,7 @@ function SessionGroup({
               >
                 <Typography
                   variant="caption"
-                  sx={{ color: 'text.secondary', fontSize: 11 }}
+                  sx={{ color: 'var(--text-secondary)', fontSize: 11 }}
                 >
                   {session.createdAt}
                 </Typography>

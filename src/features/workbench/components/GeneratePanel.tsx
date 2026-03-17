@@ -185,7 +185,7 @@ export function GeneratePanel() {
             <Typography sx={{ fontSize: 15, fontWeight: 600 }}>
               LLM Document Generation
             </Typography>
-            <Typography sx={{ fontSize: 12.5, color: 'text.secondary' }}>
+            <Typography sx={{ fontSize: 12.5, color: 'var(--text-secondary)' }}>
               Generate documentation using AI for this workspace.
             </Typography>
           </Box>
@@ -222,7 +222,7 @@ export function GeneratePanel() {
           <Typography sx={{ fontSize: 13, fontWeight: 600 }}>
             System-Wide Documentation
           </Typography>
-          <Typography sx={{ fontSize: 12, color: 'text.secondary' }}>
+          <Typography sx={{ fontSize: 12, color: 'var(--text-secondary)' }}>
             Generate documentation for the entire system. These documents cover system-level
             information.
           </Typography>
@@ -237,7 +237,7 @@ export function GeneratePanel() {
           <Typography sx={{ fontSize: 13, fontWeight: 600 }}>
             Program-Scope Documentation
           </Typography>
-          <Typography sx={{ fontSize: 12, color: 'text.secondary' }}>
+          <Typography sx={{ fontSize: 12, color: 'var(--text-secondary)' }}>
             Generate documentation for specific programs. Click a template to go to Programs
             tab and select a program.
           </Typography>
@@ -308,7 +308,7 @@ function TemplateCard({ template }: TemplateCardProps) {
           <Typography sx={{ fontSize: 13, fontWeight: 600 }}>
             {template.title}
           </Typography>
-          <Typography sx={{ fontSize: 11.5, color: 'text.secondary' }}>
+        <Typography sx={{ fontSize: 11.5, color: 'var(--text-secondary)' }}>
             {template.description}
           </Typography>
         </Box>
@@ -326,14 +326,12 @@ function TemplateCard({ template }: TemplateCardProps) {
           textTransform: 'none',
           fontSize: 12,
           fontWeight: 500,
-          color: '#ffffff',
-          backgroundImage:
-            'linear-gradient(90deg, rgba(0,210,255,0.9) 0%, rgba(58,123,213,0.95) 50%, rgba(166,94,255,0.95) 100%)',
-          boxShadow: '0 8px 20px rgba(0,0,0,0.35)',
+          color: 'var(--on-accent)',
+          backgroundImage: 'var(--accent-gradient)',
+          boxShadow: 'var(--glass-shadow)',
           '&:hover': {
-            backgroundImage:
-              'linear-gradient(90deg, rgba(0,210,255,1) 0%, rgba(58,123,213,1) 50%, rgba(166,94,255,1) 100%)',
-            boxShadow: '0 10px 24px rgba(0,0,0,0.45)',
+            backgroundImage: 'var(--accent-gradient)',
+            boxShadow: 'var(--glass-shadow), var(--glass-glow)',
           },
         }}
       >

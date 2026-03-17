@@ -11,7 +11,7 @@ function App() {
         minHeight: '100dvh',
         display: 'flex',
         flexDirection: 'column',
-        bgcolor: 'background.default',
+        bgcolor: 'transparent',
       }}
     >
       <Routes>

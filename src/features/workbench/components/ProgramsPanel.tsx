@@ -318,7 +318,7 @@ export function ProgramsPanel() {
         </Box>
         <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0.25 }}>
           <Typography sx={{ fontSize: 15, fontWeight: 600 }}>COBOL Programs</Typography>
-          <Typography sx={{ fontSize: 12.5, color: 'text.secondary' }}>
+          <Typography sx={{ fontSize: 12.5, color: 'var(--text-secondary)' }}>
             Generate documentation for individual programs.
           </Typography>
         </Box>
@@ -351,7 +351,7 @@ export function ProgramsPanel() {
             py: 0.5,
             backgroundColor: 'var(--glass-bg)',
             border: '1px solid var(--glass-border)',
-            boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.04)',
+            boxShadow: 'var(--glass-inset-highlight-subtle)',
             backdropFilter: 'var(--glass-blur)',
             WebkitBackdropFilter: 'var(--glass-blur)',
             '& .MuiTabs-flexContainer': {
@@ -449,16 +449,16 @@ export function ProgramsPanel() {
             maxWidth: 260,
           }}
         >
-          <SearchIcon sx={{ fontSize: 16, color: 'text.secondary' }} />
+          <SearchIcon sx={{ fontSize: 16, color: 'var(--text-secondary)' }} />
           <InputBase
             placeholder="Filter..."
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             sx={{
               fontSize: 12.5,
-              color: 'text.primary',
+              color: 'var(--text-primary)',
               '& input::placeholder': {
-                color: 'text.secondary',
+                color: 'var(--text-secondary)',
                 opacity: 1,
               },
             }}
@@ -512,7 +512,7 @@ export function ProgramsPanel() {
             gap: 2,
           }}
         >
-          <Typography sx={{ fontSize: 12, color: 'text.secondary' }}>
+          <Typography sx={{ fontSize: 12, color: 'var(--text-secondary)' }}>
             Showing {startIndex.toLocaleString()} - {endIndex.toLocaleString()} of{' '}
             {filteredRows.length.toLocaleString()}
           </Typography>
@@ -535,13 +535,13 @@ export function ProgramsPanel() {
                 fontSize: 11,
                 textTransform: 'uppercase',
                 letterSpacing: 0.7,
-                color: 'text.secondary',
+                color: 'var(--text-secondary)',
               },
               '& thead th.MuiTableCell-stickyHeader': {
                 backgroundColor: 'var(--bg-surface)',
               },
               '& td': {
-                borderBottom: '1px solid rgba(255,255,255,0.03)',
+                borderBottom: '1px solid var(--glass-border)',
                 fontSize: 12.5,
               },
             }}
@@ -565,7 +565,7 @@ export function ProgramsPanel() {
                   hover
                   sx={{
                     '&:hover': {
-                      bgcolor: 'rgba(255,255,255,0.02)',
+                      bgcolor: 'var(--glass-hover-bg)',
                     },
                   }}
                 >
@@ -627,7 +627,7 @@ export function ProgramsPanel() {
                     <Typography
                       sx={{
                         fontSize: 12,
-                        color: 'text.secondary',
+                        color: 'var(--text-secondary)',
                         whiteSpace: 'nowrap',
                         overflow: 'hidden',
                         textOverflow: 'ellipsis',
@@ -704,7 +704,7 @@ export function ProgramsPanel() {
               <LastPageIcon sx={{ fontSize: 16 }} />
             </IconButton>
           </Stack>
-          <Typography sx={{ fontSize: 11.5, color: 'text.secondary' }}>
+          <Typography sx={{ fontSize: 11.5, color: 'var(--text-secondary)' }}>
             Page {currentPage + 1} of {pageCount}
           </Typography>
         </Box>

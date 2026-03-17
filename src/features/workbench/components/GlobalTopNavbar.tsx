@@ -16,17 +16,24 @@ import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined'
 function ThemeToggle() {
   const [isDark, setIsDark] = useState(() => {
     if (typeof window !== 'undefined') {
-      return document.documentElement.getAttribute('data-theme') !== 'light'
+      return document.documentElement.getAttribute('data-theme') === 'dark'
     }
-    return true
+    return false
   })
 
   useEffect(() => {
     const saved = localStorage.getItem('theme-preference')
-    const dark = saved !== 'light'
+    const prefersDark =
+      typeof window !== 'undefined' &&
+      window.matchMedia &&
+      window.matchMedia('(prefers-color-scheme: dark)').matches
+
+    const nextTheme = saved === 'dark' || saved === 'light' ? saved : prefersDark ? 'dark' : 'light'
+    const dark = nextTheme === 'dark'
+    setIsDark(dark)
     setTimeout(() => {
-      if (!dark) {
-        document.documentElement.setAttribute('data-theme', 'light')
+      if (dark) {
+        document.documentElement.setAttribute('data-theme', 'dark')
       } else {
         document.documentElement.removeAttribute('data-theme')
       }
@@ -37,10 +44,10 @@ function ThemeToggle() {
     const next = !isDark
     setIsDark(next)
     if (next) {
-      document.documentElement.removeAttribute('data-theme')
+      document.documentElement.setAttribute('data-theme', 'dark')
       localStorage.setItem('theme-preference', 'dark')
     } else {
-      document.documentElement.setAttribute('data-theme', 'light')
+      document.documentElement.removeAttribute('data-theme')
       localStorage.setItem('theme-preference', 'light')
     }
   }
@@ -57,7 +64,7 @@ function ThemeToggle() {
         width: 52,
         height: 28,
         borderRadius: 999,
-        background: isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.10)',
+        background: 'var(--glass-bg)',
         border: '1px solid var(--glass-border)',
         backdropFilter: 'var(--glass-blur)',
         WebkitBackdropFilter: 'var(--glass-blur)',
@@ -70,7 +77,8 @@ function ThemeToggle() {
           boxShadow: 'var(--glass-glow)',
         },
         '&:focus-visible': {
-          outline: '2px solid var(--accent)',
+          boxShadow: 'var(--focus-ring)',
+          outline: 'none',
           outlineOffset: 2,
         },
       }}
@@ -88,9 +96,9 @@ function ThemeToggle() {
         }}
       >
         {isDark ? (
-          <LightModeOutlinedIcon sx={{ fontSize: 13, color: '#B0B0B0' }} />
+          <LightModeOutlinedIcon sx={{ fontSize: 13, color: 'var(--text-secondary)' }} />
         ) : (
-          <DarkModeOutlinedIcon sx={{ fontSize: 13, color: '#555555' }} />
+          <DarkModeOutlinedIcon sx={{ fontSize: 13, color: 'var(--text-secondary)' }} />
         )}
       </Box>
 
@@ -103,7 +111,7 @@ function ThemeToggle() {
           width: 20,
           height: 20,
           borderRadius: '50%',
-          backgroundColor: 'var(--accent)',
+          backgroundImage: 'var(--accent-gradient)',
           transform: isDark ? 'translate(4px, -50%)' : 'translate(28px, -50%)',
           transition: 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
           pointerEvents: 'none',
@@ -137,7 +145,7 @@ export function GlobalTopNavbar() {
             cursor: 'pointer',
             '&:hover .brand-mark': {
               transform: 'translateY(-1px) scale(1.03)',
-              boxShadow: '0 0 0 1px rgba(255,255,255,0.06), var(--glass-glow)',
+              boxShadow: '0 0 0 1px var(--glass-border), var(--glass-glow)',
             },
           }}
         >
@@ -190,7 +198,7 @@ export function GlobalTopNavbar() {
             py: 0.5,
             backgroundColor: 'var(--glass-bg)',
             border: '1px solid var(--glass-border)',
-            boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.04)',
+            boxShadow: 'var(--glass-inset-highlight-subtle)',
             backdropFilter: 'var(--glass-blur)',
             WebkitBackdropFilter: 'var(--glass-blur)',
           }}

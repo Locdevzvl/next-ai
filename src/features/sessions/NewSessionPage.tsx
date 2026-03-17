@@ -70,7 +70,7 @@ export function NewSessionPage() {
             <Box>
               <Typography
                 variant="caption"
-                sx={{ color: 'text.secondary', mb: 1, display: 'block' }}
+                sx={{ color: 'var(--text-secondary)', mb: 1, display: 'block' }}
               >
                 NEW SESSION
               </Typography>
@@ -85,7 +85,7 @@ export function NewSessionPage() {
               </Typography>
               <Typography
                 variant="body2"
-                sx={{ color: 'text.secondary', maxWidth: 480 }}
+                sx={{ color: 'var(--text-secondary)', maxWidth: 480 }}
               >
                 Drop a legacy repository or point to a folder path – we&apos;ll
                 extract structure, programs, and relationships into a rich
@@ -165,7 +165,7 @@ export function NewSessionPage() {
                 <Typography
                   variant="caption"
                   sx={{
-                    color: 'text.secondary',
+                    color: 'var(--text-secondary)',
                     mb: 2.5,
                     textAlign: 'center',
                     maxWidth: 360,

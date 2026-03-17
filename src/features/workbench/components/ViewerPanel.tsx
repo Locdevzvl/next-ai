@@ -20,7 +20,8 @@ export function ViewerPanel({ selectedDocument }: ViewerPanelProps) {
   const isEmpty = !selectedDocument
 
   useEffect(() => {
-    mermaid.initialize({ startOnLoad: false, theme: 'dark' })
+    const isDark = document.documentElement.getAttribute('data-theme') === 'dark'
+    mermaid.initialize({ startOnLoad: false, theme: isDark ? 'dark' : 'neutral' })
     // Chạy lại render cho tất cả block mermaid trong viewer
     mermaid.run()
   }, [selectedDocument])
@@ -69,7 +70,7 @@ export function ViewerPanel({ selectedDocument }: ViewerPanelProps) {
                 '&:hover': {
                   transform: 'translateY(-1px)',
                   borderColor: 'var(--accent)',
-                  boxShadow: '0 0 0 1px rgba(255,255,255,0.06), var(--glass-glow)',
+                  boxShadow: '0 0 0 1px var(--glass-border), var(--glass-glow)',
                 },
               }}
             >
@@ -82,7 +83,7 @@ export function ViewerPanel({ selectedDocument }: ViewerPanelProps) {
               sx={{
                 fontSize: 10,
                 fontWeight: 600,
-                color: 'text.secondary',
+                color: 'var(--text-secondary)',
                 textTransform: 'uppercase',
                 letterSpacing: 1,
                 lineHeight: 1,
@@ -116,7 +117,7 @@ export function ViewerPanel({ selectedDocument }: ViewerPanelProps) {
               <IconButton
                 size="small"
                 sx={{
-                  color: 'text.secondary',
+                  color: 'var(--text-secondary)',
                   '&:hover': { bgcolor: 'var(--glass-hover-bg)', color: 'var(--text-primary)' },
                 }}
               >
@@ -213,17 +214,17 @@ function DocumentContent({ document }: DocumentContentProps) {
               px: 1.25,
               py: 0.3,
               borderRadius: 999,
-              bgcolor: 'rgba(34, 197, 94, 0.10)',
-              border: '1px solid rgba(34, 197, 94, 0.25)',
+              bgcolor: 'var(--success-bg)',
+              border: '1px solid var(--success-border)',
             }}
           >
-            <Typography sx={{ fontSize: 10.5, fontWeight: 600, color: '#22c55e' }}>
+            <Typography sx={{ fontSize: 10.5, fontWeight: 600, color: 'var(--success)' }}>
               Active
             </Typography>
           </Box>
         </Box>
 
-        <Typography sx={{ color: 'text.secondary', fontSize: 12.5, lineHeight: 1.7 }}>
+        <Typography sx={{ color: 'var(--text-secondary)', fontSize: 12.5, lineHeight: 1.7 }}>
           COBOL program <strong>{document.code}</strong> の詳細設計書（detail_design.md）のプレビューです。
           実際のシステムでは、この内容がリポジトリ上の Markdown ファイルから読み込まれます。
         </Typography>
@@ -260,7 +261,7 @@ function DocumentContent({ document }: DocumentContentProps) {
           },
           '& p': {
             mb: 1,
-            color: 'text.secondary',
+            color: 'var(--text-secondary)',
           },
           '& ul, & ol': {
             pl: 3,
@@ -404,7 +405,7 @@ function EmptyViewerState() {
           Select a document to view
         </Typography>
         <Typography
-          sx={{ color: 'text.secondary', fontSize: 13, lineHeight: 1.7 }}
+          sx={{ color: 'var(--text-secondary)', fontSize: 13, lineHeight: 1.7 }}
         >
           Choose a program document from the sidebar to view details, analysis,
           and code excerpts here.

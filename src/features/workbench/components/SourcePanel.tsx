@@ -181,7 +181,7 @@ export function SourcePanel() {
         </Box>
         <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0.25 }}>
           <Typography sx={{ fontSize: 15, fontWeight: 600 }}>Source Explorer</Typography>
-          <Typography sx={{ fontSize: 12.5, color: 'text.secondary' }}>
+          <Typography sx={{ fontSize: 12.5, color: 'var(--text-secondary)' }}>
             Browse and view project files.
           </Typography>
         </Box>
@@ -228,16 +228,16 @@ export function SourcePanel() {
                 border: '1px solid var(--glass-border)',
               }}
             >
-              <SearchIcon sx={{ fontSize: 16, color: 'text.secondary' }} />
+              <SearchIcon sx={{ fontSize: 16, color: 'var(--text-secondary)' }} />
               <InputBase
                 placeholder="Filter files..."
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 sx={{
                   fontSize: 12.5,
-                  color: 'text.primary',
+                  color: 'var(--text-primary)',
                   '& input::placeholder': {
-                    color: 'text.secondary',
+                    color: 'var(--text-secondary)',
                     opacity: 1,
                   },
                 }}
@@ -277,7 +277,7 @@ export function SourcePanel() {
           sx={{
             borderRadius: 2,
             border: '1px solid var(--glass-border)',
-            bgcolor: '#151623',
+            bgcolor: 'var(--bg-elevated)',
             display: 'flex',
             flexDirection: 'column',
             overflow: 'hidden',
@@ -288,7 +288,7 @@ export function SourcePanel() {
             sx={{
               px: 2,
               py: 1.25,
-              borderBottom: '1px solid rgba(255,255,255,0.08)',
+              borderBottom: '1px solid var(--glass-border)',
               display: 'flex',
               alignItems: 'center',
               gap: 1.5,
@@ -297,7 +297,7 @@ export function SourcePanel() {
             <Typography
               sx={{
                 fontSize: 12,
-                color: 'text.secondary',
+                color: 'var(--text-secondary)',
                 flex: 1,
                 whiteSpace: 'nowrap',
                 overflow: 'hidden',
@@ -316,7 +316,7 @@ export function SourcePanel() {
                   fontSize: 12,
                   textTransform: 'none',
                   borderColor: 'var(--glass-border)',
-                  color: 'text.primary',
+                  color: 'var(--text-primary)',
                 }}
               >
                 Expand
@@ -330,7 +330,7 @@ export function SourcePanel() {
                   fontSize: 12,
                   textTransform: 'none',
                   borderColor: 'var(--glass-border)',
-                  color: 'text.primary',
+                  color: 'var(--text-primary)',
                 }}
               >
                 Download
@@ -348,9 +348,8 @@ export function SourcePanel() {
               py: 2,
               fontFamily: 'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
               fontSize: 12,
-              color: '#E6E9FF',
-              background:
-                'radial-gradient(circle at 0 0, rgba(120,120,255,0.08), transparent 55%), radial-gradient(circle at 100% 100%, rgba(120,120,255,0.12), transparent 55%)',
+              color: 'var(--code-fg)',
+              background: 'var(--code-bg)',
             }}
           >
             <CodeBlockWithLineNumbers content={MOCK_SOURCE_CONTENT} />
@@ -390,17 +389,18 @@ function SourceTreeNode({
     const isExpanded = expanded[node.id] ?? false
     const hasChildren = node.children.length > 0
     const visibleChildren = node.children
-      .map((child) =>
-        SourceTreeNode({
-          node: child,
-          level: level + 1,
-          expanded,
-          onToggle,
-          selectedFileId,
-          onSelectFile,
-          query,
-        }),
-      )
+      .map((child) => (
+        <SourceTreeNode
+          key={child.id}
+          node={child}
+          level={level + 1}
+          expanded={expanded}
+          onToggle={onToggle}
+          selectedFileId={selectedFileId}
+          onSelectFile={onSelectFile}
+          query={query}
+        />
+      ))
       .filter(Boolean) as React.ReactElement[]
 
     if (!matchesQuery && visibleChildren.length === 0) {
@@ -422,21 +422,21 @@ function SourceTreeNode({
           <ListItemIcon sx={{ minWidth: 0, mr: 1 }}>
             {hasChildren ? (
               isExpanded ? (
-                <ExpandMoreIcon sx={{ fontSize: 16, color: 'text.secondary' }} />
+                <ExpandMoreIcon sx={{ fontSize: 16, color: 'var(--text-secondary)' }} />
               ) : (
-                <ChevronRightIcon sx={{ fontSize: 16, color: 'text.secondary' }} />
+                <ChevronRightIcon sx={{ fontSize: 16, color: 'var(--text-secondary)' }} />
               )
             ) : (
               <Box sx={{ width: 16 }} />
             )}
           </ListItemIcon>
           <FolderOutlinedIcon
-            sx={{ fontSize: 16, color: isExpanded ? 'var(--accent)' : 'text.secondary', mr: 1 }}
+            sx={{ fontSize: 16, color: isExpanded ? 'var(--accent)' : 'var(--text-secondary)', mr: 1 }}
           />
           <ListItemText
             primaryTypographyProps={{
               fontSize: 12,
-              color: 'text.primary',
+              color: 'var(--text-primary)',
             }}
             primary={node.name}
           />
@@ -473,12 +473,12 @@ function SourceTreeNode({
       }}
     >
       <DescriptionOutlinedIcon
-        sx={{ fontSize: 15, color: isSelected ? 'var(--accent)' : 'text.secondary', mr: 1 }}
+        sx={{ fontSize: 15, color: isSelected ? 'var(--accent)' : 'var(--text-secondary)', mr: 1 }}
       />
       <ListItemText
         primaryTypographyProps={{
           fontSize: 12,
-          color: isSelected ? 'var(--accent)' : 'text.primary',
+          color: isSelected ? 'var(--accent)' : 'var(--text-primary)',
         }}
         primary={node.name}
       />
@@ -505,7 +505,7 @@ function CodeBlockWithLineNumbers({ content }: CodeBlockWithLineNumbersProps) {
         sx={{
           pr: 1,
           textAlign: 'right',
-          color: 'rgba(230,233,255,0.55)',
+          color: 'var(--code-muted)',
           userSelect: 'none',
         }}
       >
